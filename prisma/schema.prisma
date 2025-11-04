@@ -62,7 +62,7 @@ model Order {
   status            OrderStatus       @default(PENDING)
   createdAt         DateTime          @default(now())
   updateAt          DateTime          @updatedAt
-  consumptionMethod consumptionMethod
+  consumptionMethod ConsumptionMethod
   orderProducts     OrderProduct[]
   restaurantId      String
   restaurant        Restaurant        @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
@@ -87,7 +87,7 @@ enum OrderStatus {
   DELIVERED
 }
 
-enum consumptionMethod {
+enum ConsumptionMethod {
   DINE_IN
   TAKE_AWAY
   DELIVERY
