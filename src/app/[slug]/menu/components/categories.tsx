@@ -1,6 +1,6 @@
 "use client";
 
-import { MenuCategory, Prisma } from "@prisma/client";
+import { Prisma } from "@prisma/client";
 import { Scrollbar } from "@radix-ui/react-scroll-area";
 import { ClockIcon } from "lucide-react";
 import Image from "next/image";
