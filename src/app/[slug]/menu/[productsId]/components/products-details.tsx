@@ -18,17 +18,13 @@ interface IProductsDetailsProps {
   }>;
 }
 const ProductsDetails = ({ products }: IProductsDetailsProps) => {
-  const {
-    isOpen,
-    products: cartProducts,
-    toggleCart,
-  } = useContext(CartContext);
-  const [quantity, setQuantity] = useState<number>(0);
+  const { toggleCart, addToCart } = useContext(CartContext);
+  const [quantity, setQuantity] = useState<number>(1);
   const handleQuantityChange = (newQuantity: number) => {
     setQuantity(newQuantity);
   };
   const handleAddToCart = () => {
-    // Logic to add product to cart
+    addToCart({ ...products, quantity });
     toggleCart();
   };
 
@@ -59,7 +55,7 @@ const ProductsDetails = ({ products }: IProductsDetailsProps) => {
               <Button
                 variant="outline"
                 className="h-8 w-8 rounded-xl"
-                onClick={() => handleQuantityChange(Math.max(0, quantity - 1))}
+                onClick={() => handleQuantityChange(Math.max(1, quantity - 1))}
               >
                 <ChevronLeftIcon />
               </Button>
@@ -67,7 +63,7 @@ const ProductsDetails = ({ products }: IProductsDetailsProps) => {
               <Button
                 variant="destructive"
                 className="h-8 w-8 rounded-xl"
-                onClick={() => handleQuantityChange(Math.max(0, quantity + 1))}
+                onClick={() => handleQuantityChange(Math.max(1, quantity + 1))}
               >
                 <ChevronRightIcon />
               </Button>
@@ -99,7 +95,6 @@ const ProductsDetails = ({ products }: IProductsDetailsProps) => {
           Adicionar à sacola
         </Button>
       </div>
-
       <CartSheet />
     </>
   );
