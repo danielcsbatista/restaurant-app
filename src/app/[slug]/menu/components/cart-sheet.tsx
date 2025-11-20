@@ -8,23 +8,21 @@ import {
 } from "@/components/ui/sheet";
 
 import { CartContext } from "../contexts/cart";
+import CartProductsItems from "./cart-products-itens";
 
 const CartSheet = () => {
   const { isOpen, toggleCart, products } = useContext(CartContext);
   return (
     <Sheet open={isOpen} onOpenChange={toggleCart}>
-      <SheetContent>
+      <SheetContent className="w-[80%]">
         <SheetHeader>
-          <SheetTitle>Are you absolutely sure?</SheetTitle>
-
-          <ul>
-            {products.map((product) => (
-              <li key={product.id}>
-                {product.name} x {product.quantity}
-              </li>
-            ))}
-          </ul>
+          <SheetTitle className="text-left pb-5">Sacola</SheetTitle>
         </SheetHeader>
+        <div className="py-5">
+          {products.map((product) => (
+            <CartProductsItems key={product.id} product={product} />
+          ))}
+        </div>
       </SheetContent>
     </Sheet>
   );
